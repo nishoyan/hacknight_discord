@@ -9,6 +9,7 @@ class Ktu(commands.Cog):
 
         self.fetch_latest.start()
 
+    # NOTE: I should have used announcement page to scrape directly 🥲
     @tasks.loop(seconds=30)
     async def fetch_latest(self):
         sauce = requests.get("https://ktu.edu.in/home.htm").text
