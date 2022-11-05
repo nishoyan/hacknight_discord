@@ -7,7 +7,9 @@ class Ktu(commands.Cog):
         self.bot = bot
         self.results = []
 
-    @tasks.loop(seconds=60)
+        self.fetch_latest.start()
+
+    @tasks.loop(seconds=30)
     async def fetch_latest(self):
         sauce = requests.get("https://ktu.edu.in/home.htm").text
         soup = BeautifulSoup(sauce, 'lxml')
@@ -17,19 +19,11 @@ class Ktu(commands.Cog):
         for li in lis:
             a = li.find('a').text
             if a not in self.results:
+                if len(self.results) == 0: return
+
                 channel = self.bot.get_channel(867377360529260562)
-                await channel.send("nice")
-                break
-
-    @commands.command()
-    async def ktu_start(self, ctx: commands.Context):
-        self.fetch_latest.start()
-        await ctx.send("Called")
-
-    @commands.command()
-    async def ktu_end(self, ctx: commands.Context):
-        self.fetch_latest.stop()
-        await ctx.send("Stopped")
+                await channel.send(a)
+                return
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Ktu(bot))
