@@ -1,3 +1,4 @@
 beautifulsoup4
 discord
 requests
+youtube-search-python

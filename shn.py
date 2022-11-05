@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import os
-from cogs import Ktu, Bookmark
+from cogs import Ktu, Bookmark, Youtube
 
 bot = commands.Bot(command_prefix='.', intents=discord.Intents.all())
 
@@ -10,5 +10,6 @@ async def on_ready():
     print("Bot started!")
     await Ktu.setup(bot)
     await Bookmark.setup(bot)
+    await Youtube.setup(bot)
 
 bot.run(token=os.environ['TOKEN'])
