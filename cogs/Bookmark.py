@@ -1,8 +1,9 @@
 from discord.ext import commands
 import discord
 
-
+# This is like the bookmarker bot from tinkerhub server but less advanced
 class Bookmark(commands.Cog):
+    """React with 📑 emoji to get the message as DM."""
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
