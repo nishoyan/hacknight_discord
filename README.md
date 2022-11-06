@@ -1,4 +1,5 @@
 # Saturday Hack Night Discord
+Invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=1038441132989890600&permissions=8&scope=bot) .
 
 `prefix = '.'`
 
