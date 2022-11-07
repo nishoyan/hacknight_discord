@@ -7,10 +7,12 @@ class Meme(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def meme(self, ctx, *, sub=''):
+    async def meme(self, ctx, sub='memes', *, count=1):
         """Specify a subreddit to get it from there!"""
-        sauce = requests.get(f"https://meme-api.herokuapp.com/gimme/{sub}").json()
-        await ctx.send(sauce['url'])
+        url = f"https://meme-api.herokuapp.com/gimme/{sub}/{count}"
+        sauce = requests.get(url).json()
+        for meme in sauce["memes"]:
+            await ctx.send(meme['url'])
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Meme(bot))
