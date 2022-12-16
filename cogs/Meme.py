@@ -9,7 +9,7 @@ class Meme(commands.Cog):
     @commands.command()
     async def meme(self, ctx, sub='memes', *, count=1):
         """Specify a subreddit to get it from there!"""
-        url = f"https://meme-api.herokuapp.com/gimme/{sub}/{count}"
+        url = f"https://meme-api.com/gimme/{sub}/{count}"
         sauce = requests.get(url).json()
         for meme in sauce["memes"]:
             await ctx.send(meme['url'])
